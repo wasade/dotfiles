@@ -1,0 +1,141 @@
+if [ ! -z "$PS1" ]
+then
+    bind "set completion-ignore-case on"
+    bind "set bell-style none"   #Removes the irretating bell sound in shell
+    bind "set show-all-if-ambiguous on" #Shows alternativs when using tab completion
+    bind "set match-hidden-files on"
+    bind "set visible-stats on"
+    bind '"\e[A":history-search-backward'
+    bind '"\e[B":history-search-forward'
+    bind '"\C-f": forward-word'
+    bind '"\C-b": backward-word'
+    shopt -s checkwinsize  # fix stupid text window resize issue
+fi
+
+user=$(whoami)
+if [ "$user" == "root" ]
+then
+    ps1_user_color=31
+else
+    ps1_user_color=32
+fi
+
+os=$(uname)
+if [ "$os" == "Darwin" ]
+then
+    # colors and order can be found here:
+    # http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
+    export CLICOLOR=1
+    # export LSCOLORS=DxGxBxDxCxEgEdxbxgxcxd
+    export LSCOLORS=Dxfxcxdxbxegedabagacad
+else
+    os_ls_args="--color=auto"
+    export LS_COLORS='no=00:fi=00:di=01;93:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=01;32:*.cmd=01;32:*.sh=01;32:*.csh=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tz=01;31:*.rpm=01;31:*.cpio=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:*.png=01;35:*.tif=01;35:'
+fi
+
+export PS1='\[\033[1;33m\]\t \[\033[0m\](\[\e[1;${ps1_user_color}m\]\u\[\e[0m\]@\h):\W$ '
+
+# various bits here adapted from 
+# http://natelandau.com/my-mac-osx-bash_profile/
+export GREP_COLOR='1;32' 
+export GREP_OPTIONS=--color=auto
+export LESS=-FSR 
+export PAGER=less
+
+alias ls='ls -lh ${os_ls_args}'
+alias vi=vim
+alias df='df -h'
+alias myip='curl ip.appspot.com; echo'
+
+pyfind ()
+{
+        find . -name "*.py" -exec grep -iH ${1} {} \;
+}
+
+headpos ()
+{
+        echo `head -n 1 $1 | tr "\t" "\n" | grep -n $2 | cut -d ':' -f 1`
+}
+
+lesstab ()
+{
+        column -t -s '  ' ${1} | less -S
+}
+
+# adapted from Zech Xu's dotfiles (url no longer available)
+stylize ()
+{
+    RESET="$(tput sgr0)";
+    BOLD="$(tput bold)";
+    BLINK="$(tput blink)";
+    REVERSE="$(tput rev)";
+    UNDERLINEOFF="$(tput rmul)";
+    UNDERLINEON="$(tput smul)";
+    fBLACK="$(tput setaf 0)";
+    bBLACK="$(tput setab 0)";
+    fRED="$(tput setaf 1)";
+    bRED="$(tput setab 1)";
+    fGREEN="$(tput setaf 2)";
+    bGREEN="$(tput setab 2)";
+    fYELLOW="$(tput setaf 3)";
+    bYELLOW="$(tput setab 3)";
+    fBLUE="$(tput setaf 4)";
+    bBLUE="$(tput setab 4)";
+    fMAGENTA="$(tput setaf 5)";
+    bMAGENTA="$(tput setab 5)";
+    fCYAN="$(tput setaf 6)";
+    bCYAN="$(tput setab 6)";
+    fWHITE="$(tput setaf 7)";
+    bWHITE="$(tput setab 7)";
+}
+stylize
+
+# adapted from Zech Xu's dotfiles (url no longer available)
+man ()
+{
+        env LESS_TERMCAP_mb=$BOLD$fCYAN \
+            LESS_TERMCAP_md=$BOLD$fCYAN \
+            LESS_TERMCAP_me=$RESET \
+            LESS_TERMCAP_se=$RESET \
+            LESS_TERMCAP_ue=$RESET \
+            LESS_TERMCAP_us=$BOLD$fGREEN \
+            man "$@"
+}
+
+function egit (){
+    # git specific usage for branching
+    function branch_separator () {
+        #git name-rev HEAD 2> /dev/null | sed 's#HEAD\ \(.*\)#(git::\1) #'
+        if [[ -n $(git rev-parse --abbrev-ref HEAD 2> /dev/null) ]]
+        then
+        echo "@"
+        fi
+    }
+    function get_git_branch () {
+        git rev-parse --abbrev-ref HEAD 2> /dev/null
+    }
+
+    export PS1='\[\033[1;33m\]\t \[\033[0m\](\[\e[1;${ps1_user_color}m\]\u\[\e[0m\]@\h):\W$(branch_separator)\[\e[m\]\[\e[01;38;5;196m\]$(get_git_branch)\[\e[m\]$ '
+
+}
+function dgit (){
+    export PS1='\[\033[1;33m\]\t \[\033[0m\](\[\e[1;{$ps1_user_color}m\]\u\[\e[0m\]@\h):\W$ '
+}
+
+# enable git flavored prompt
+egit;
+
+if [ -d "${HOME}/.bash_completion.d" ]; then
+    for f in ${HOME}/.bash_completion.d/*;
+    do
+        source $f;
+    done
+fi
+
+# hello msg...
+echo ""
+echo -e "Hostname: " `hostname`
+echo -e "Kernel:   " `uname -smr`
+echo -ne "Uptime:   "; uptime
+echo -ne "Sys Date:  "; date
+echo ""
