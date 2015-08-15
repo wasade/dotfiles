@@ -1,5 +1,5 @@
 # dotfiles
-Because everyone needs dotfiles
+Because its annoying having an inconsistent environment.
 
 The goals of these dotfiles are:
 
