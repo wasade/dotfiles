@@ -18,3 +18,7 @@ do
     fi
     cp ${dots_dir}/${f} ${HOME}/.${f}
 done
+
+echo "Not automatically sourcing environment. Please open a new terminal or type: "
+echo "source ~/.bash_profile"
+echo ""
