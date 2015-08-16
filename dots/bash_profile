@@ -38,7 +38,7 @@ fi
 # http://natelandau.com/my-mac-osx-bash_profile/
 export GREP_COLOR='1;32' 
 export GREP_OPTIONS=--color=auto
-export LESS=-FSR 
+export LESS=-SR 
 export PAGER=less
 
 alias ls='ls -lh ${os_ls_args}'
