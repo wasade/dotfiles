@@ -139,4 +139,10 @@ echo -ne "Uptime:   "; uptime
 echo -ne "Sys Date:  "; date
 echo ""
 
-export PATH=${HOME}/bin:${PATH}
+if [ -d "${HOME}/miniconda3" ]; then
+    export PATH=${HOME}/miniconda3/bin:${HOME}/bin:${PATH}
+    source activate py34-base
+    eval "$(register-python-argcomplete conda)"
+else
+    export PATH=${HOME}/bin:${PATH}
+fi
