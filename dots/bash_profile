@@ -114,11 +114,11 @@ function egit (){
         git rev-parse --abbrev-ref HEAD 2> /dev/null
     }
 
-    export PS1='\[\033[1;33m\]\t \[\033[0m\](\[\e[1;${ps1_user_color}m\]\u\[\e[0m\]@\e[1;34m\]\h\[\e[0m\]):\W$(branch_separator)\[\e[m\]\[\e[01;38;5;196m\]$(get_git_branch)\[\e[m\]$ '
+    export PS1='\[\033[1;33m\]\t \[\033[0m\](\[\e[1;${ps1_user_color}m\]\u\[\e[0m\]@\[\e[1;94m\]\h\[\e[0m\]):\W$(branch_separator)\[\e[m\]\[\e[01;38;5;196m\]$(get_git_branch)\[\e[m\]$ '
 
 }
 function dgit (){
-    export PS1='\[\033[1;33m\]\t \[\033[0m\](\[\e[1;${ps1_user_color}m\]\u\[\e[0m\]@\h\e[39m):\W$ '
+    export PS1='\[\033[1;33m\]\t \[\033[0m\](\[\e[1;${ps1_user_color}m\]\u\[\e[0m\]@\[\e[1;94m\]\h\[\e[0m\]):\W$ '
 }
 
 # enable git flavored prompt
