@@ -1,6 +1,12 @@
 #!/bin/sh
 
-curl -o miniconda.sh http://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+if [ "$(uname)" == "Darwin" ]
+then
+    curl -o miniconda.sh http://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+else
+    curl -o miniconda.sh http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+fi
+
 sh miniconda.sh -b
 
 echo "export PATH=${HOME}/miniconda3/bin:$PATH" >> ${HOME}/.bash_profile
