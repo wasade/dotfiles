@@ -35,4 +35,4 @@ echo "c.TerminalInteractiveShell.editor = 'vim'" >> ${HOME}/.ipython/profile_def
 echo "c.TerminalInteractiveShell.confirm_exit = False" >> ${HOME}/.ipython/profile_default/ipython_config.py
 echo "c.TerminalInteractiveShell.pager = 'less -FSR'" >> ${HOME}/.ipython/profile_default/ipython_config.py
 echo "c.PromptManager.justify = False" >> ${HOME}/.ipython/profile_default/ipython_config.py
-echo "c.PromptManager.in_template = u'{color.Yellow}\T {color.White}({color.LightGreen}\\u{color.White}@{color.LightBlue}\h{color.White}):\Y1> '" >> ${HOME}/.ipython/profile_default/ipython_config.py
+echo "c.PromptManager.in_template = u'{color.Yellow}\T {color.White}({color.LightGreen}\\\u{color.White}@{color.LightBlue}\h{color.White}):\Y1> '" >> ${HOME}/.ipython/profile_default/ipython_config.py
