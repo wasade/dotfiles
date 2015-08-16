@@ -27,7 +27,12 @@ echo "c.Application.verbose_crash=True" >> ${HOME}/.ipython/profile_default/ipyt
 echo "c.AliasManager.user_aliases = [" >> ${HOME}/.ipython/profile_default/ipython_config.py
 echo "         ('ls', 'ls -lrthG')" >> ${HOME}/.ipython/profile_default/ipython_config.py
 echo "         ]" >> ${HOME}/.ipython/profile_default/ipython_config.py
-echo "c.InteractiveShellApp.pylab = 'auto'" >> ${HOME}/.ipython/profile_default/ipython_config.py
+
+if [ ! -z "$DISPLAY" ]
+then
+    echo "c.InteractiveShellApp.pylab = 'auto'" >> ${HOME}/.ipython/profile_default/ipython_config.py
+fi
+
 echo "c.TerminalIPythonApp.display_banner = False" >> ${HOME}/.ipython/profile_default/ipython_config.py
 echo "c.TerminalInteractiveShell.colors = 'Linux'" >> ${HOME}/.ipython/profile_default/ipython_config.py
 echo "c.TerminalInteractiveShell.autoindent = True" >> ${HOME}/.ipython/profile_default/ipython_config.py
