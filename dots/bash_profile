@@ -146,3 +146,16 @@ if [ -d "${HOME}/miniconda3" ]; then
 else
     export PATH=${HOME}/bin:${PATH}
 fi
+
+# conda tab completion of environment names. Modified from
+# https://github.com/asmeurer/dotfiles/blob/master/.profile
+# Thanks to Aaron Meurer!
+alias act="source activate"
+alias deact="source deactivate"
+_activate_complete ()
+{
+    local cur="${COMP_WORDS[COMP_CWORD]}";
+    COMPREPLY=($(compgen -W "`cd $HOME/miniconda3/envs && /bin/ls -d *`" -- "$cur" ));
+}
+
+complete -F _activate_complete "act"
