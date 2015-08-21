@@ -32,8 +32,8 @@ sh miniconda.sh -b
 export PATH=${HOME}/miniconda3/bin:$PATH
 
 conda update --yes conda
-conda create --yes -n py34-base numpy scipy pandas matplotlib argcomplete jupyter
-conda create --yes -n py27-base python=2 numpy scipy pandas matplotlib argcomplete jupyter
+conda create --yes -n py34-base numpy scipy pandas matplotlib argcomplete jupyter flake8
+conda create --yes -n py27-base python=2 numpy scipy pandas matplotlib argcomplete jupyter flake8
 
 source activate py34-base
 
