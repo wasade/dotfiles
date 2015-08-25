@@ -141,7 +141,15 @@ echo ""
 
 if [ -d "${HOME}/miniconda3" ]; then
     export PATH=${HOME}/miniconda3/bin:${HOME}/bin:${PATH}
-    source activate py34-base
+    
+    # this is handy for compute environments as it'll activate the
+    # env used on job submission
+    if [ ! -z "$CONDA_DEFAULT_ENV" ]; then
+        source activate $CONDA_DEFAULT_ENV
+    else
+        source activate py34-base
+    fi
+    
     eval "$(register-python-argcomplete conda)"
 else
     export PATH=${HOME}/bin:${PATH}
