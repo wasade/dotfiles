@@ -141,7 +141,7 @@ echo ""
 
 if [ -d "${HOME}/miniconda3" ]; then
     export PATH=${HOME}/miniconda3/bin:${HOME}/bin:${PATH}
-    source activate py34-base
+    source activate py35-base
     eval "$(register-python-argcomplete conda)"
 else
     export PATH=${HOME}/bin:${PATH}

@@ -1,0 +1,10 @@
+script:
+  - bash bin/bootstrap.sh
+  - conda create --name "py27-travis-test" --clone "py27-base"
+  - conda create --name "py35-travis-test" --clone "py35-base"
+  - act py27-travis-test
+  - conda install --yes scikit-bio
+  - deact
+  - act py35-travis-test
+  - conda install --yes scikit-bio
+  - deact

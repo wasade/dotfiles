@@ -32,12 +32,12 @@ sh miniconda.sh -b
 export PATH=${HOME}/miniconda3/bin:$PATH
 
 conda update --yes conda
-conda create --yes -n py34-base numpy scipy pandas matplotlib argcomplete jupyter flake8
+conda create --yes -n py35-base numpy scipy pandas matplotlib argcomplete jupyter flake8
 conda create --yes -n py27-base python=2 numpy scipy pandas matplotlib argcomplete jupyter flake8
 
-source activate py34-base
+source activate py35-base
 
-# this profile will resolve for both py27 and py34
+# this profile will resolve for both py27 and py35
 ipython profile create
 
 # set a reasonabe default IPython config
