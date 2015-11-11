@@ -2,13 +2,15 @@
 
 current_date=$(date +"%Y-%m-%d")
 
-# getting current script directory from:
-# http://stackoverflow.com/a/246128/19741
-dots_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../dots
+pushd `dirname ${BASH_SOURCE[0]}` > /dev/null
+dots_dir=`pwd`/../dots
+popd > /dev/null
 
-# creating an array from ls from:
-# http://stackoverflow.com/a/18885068/19741
-files=($(/bin/ls ${dots_dir}))
+files=()
+for f in `/bin/ls ${dots_dir}`
+do
+    files=("${files[@]}" ${f})
+done
 
 for f in ${files[@]}
 do
