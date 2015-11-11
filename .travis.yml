@@ -5,6 +5,7 @@ script:
   - bash --version
   - bash bin/bootstrap.sh
   - source $HOME/.bash_profile
+  - alias
   - conda create --name "py27-travis-test" --clone "py27-base"
   - conda create --name "py35-travis-test" --clone "py35-base"
   - act py27-travis-test
