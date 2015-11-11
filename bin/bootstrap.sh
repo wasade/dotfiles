@@ -29,7 +29,7 @@ else
     curl -o miniconda.sh http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 fi
 
-sh miniconda.sh -b
+bash miniconda.sh -b
 
 export PATH=${HOME}/miniconda3/bin:$PATH
 
