@@ -22,7 +22,7 @@ do
     #fi
     #cp ${dots_dir}/${f} ${HOME}/.${f}
 done
-exit 1
+
 # download and setup conda
 if [ "$(uname)" == "Darwin" ]
 then
@@ -33,6 +33,7 @@ else
     curl -o miniconda.sh http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 fi
 
+exit 1
 sh miniconda.sh -b
 
 export PATH=${HOME}/miniconda3/bin:$PATH
