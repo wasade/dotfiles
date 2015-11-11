@@ -12,6 +12,9 @@ do
     files=("${files[@]}" ${f})
 done
 
+echo ${dots_dir}
+echo ${files[@]}
+
 for f in ${files[@]}
 do
     if [ -e "${HOME}/.${f}" ]
