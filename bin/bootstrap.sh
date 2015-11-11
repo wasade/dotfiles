@@ -12,23 +12,24 @@ do
     files=("${files[@]}" ${f})
 done
 
-echo ${dots_dir}
-echo ${files[@]}
-
 for f in ${files[@]}
 do
-    if [ -e "${HOME}/.${f}" ]
-    then
-        cp ${HOME}/.${f} ${HOME}/.${f}-${current_date}-backup
-    fi
-    cp ${dots_dir}/${f} ${HOME}/.${f}
-done
+    echo ${f}
 
+    #if [ -e "${HOME}/.${f}" ]
+    #then
+        #cp ${HOME}/.${f} ${HOME}/.${f}-${current_date}-backup
+    #fi
+    #cp ${dots_dir}/${f} ${HOME}/.${f}
+done
+exit 1
 # download and setup conda
 if [ "$(uname)" == "Darwin" ]
 then
+    echo "Darwin"
     curl -o miniconda.sh http://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
 else
+    echo "Linux"
     curl -o miniconda.sh http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 fi
 
