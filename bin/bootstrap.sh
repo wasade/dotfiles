@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 current_date=$(date +"%Y-%m-%d")
 
@@ -29,7 +29,8 @@ else
     curl -o miniconda.sh http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 fi
 
-bash miniconda.sh -b
+chmod +x miniconda.sh
+./miniconda.sh -b
 
 export PATH=${HOME}/miniconda3/bin:$PATH
 
