@@ -24,9 +24,9 @@ done
 # download and setup conda
 if [ "$(uname)" == "Darwin" ]
 then
-    curl -o miniconda.sh http://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+    curl -o miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
 else
-    curl -o miniconda.sh http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    curl -o miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 fi
 
 chmod +x miniconda.sh
@@ -35,10 +35,9 @@ chmod +x miniconda.sh
 export PATH=${HOME}/miniconda3/bin:$PATH
 
 conda update --yes conda
-conda create --yes -n py35-base numpy scipy pandas matplotlib argcomplete jupyter flake8
-conda create --yes -n py27-base python=2 numpy scipy pandas matplotlib argcomplete jupyter flake8
+conda create --yes -n base numpy scipy pandas matplotlib argcomplete jupyter flake8
 
-source activate py35-base
+source activate base
 
 # this profile will resolve for both py27 and py35
 ipython profile create
@@ -55,13 +54,13 @@ then
 fi
 
 echo "c.TerminalIPythonApp.display_banner = False" >> ${HOME}/.ipython/profile_default/ipython_config.py
-echo "c.TerminalInteractiveShell.colors = 'Linux'" >> ${HOME}/.ipython/profile_default/ipython_config.py
+echo "c.InteractiveShell.colors = 'Linux'" >> ${HOME}/.ipython/profile_default/ipython_config.py
 echo "c.TerminalInteractiveShell.autoindent = True" >> ${HOME}/.ipython/profile_default/ipython_config.py
 echo "c.TerminalInteractiveShell.editor = 'vim'" >> ${HOME}/.ipython/profile_default/ipython_config.py
 echo "c.TerminalInteractiveShell.confirm_exit = False" >> ${HOME}/.ipython/profile_default/ipython_config.py
-echo "c.TerminalInteractiveShell.pager = 'less -FSR'" >> ${HOME}/.ipython/profile_default/ipython_config.py
-echo "c.PromptManager.justify = False" >> ${HOME}/.ipython/profile_default/ipython_config.py
-echo "c.PromptManager.in_template = u'{color.Yellow}\T {color.White}({color.LightGreen}\\\u{color.White}@{color.LightBlue}\h{color.White}):\Y1> '" >> ${HOME}/.ipython/profile_default/ipython_config.py
+echo "c.TerminalInteractiveShell.true_color = True" >> ${HOME}/.ipython/profile_default/ipython_config.py
+#echo "c.PromptManager.justify = False" >> ${HOME}/.ipython/profile_default/ipython_config.py
+#echo "c.PromptManager.in_template = u'{color.Yellow}\T {color.White}({color.LightGreen}\\\u{color.White}@{color.LightBlue}\h{color.White}):\Y1> '" >> ${HOME}/.ipython/profile_default/ipython_config.py
 
 echo ""
 echo "Not automatically sourcing environment. Please open a new terminal or type: "
