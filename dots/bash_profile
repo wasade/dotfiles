@@ -147,7 +147,7 @@ if [ -d "${HOME}/miniconda3" ]; then
     if [ ! -z "$CONDA_DEFAULT_ENV" ]; then
         source activate $CONDA_DEFAULT_ENV
     else
-        source activate py35-base
+        source activate base
     fi
     
     eval "$(register-python-argcomplete conda)"
