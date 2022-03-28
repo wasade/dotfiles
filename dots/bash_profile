@@ -155,6 +155,10 @@ else
     export PATH=${HOME}/bin:${PATH}
 fi
 
+if [ -d "${HOME}/mambaforge" ]; then
+    export PATH=${PATH}:${HOME}/mambaforge/bin
+fi
+
 # conda tab completion of environment names. Modified from
 # https://github.com/asmeurer/dotfiles/blob/master/.profile
 # Thanks to Aaron Meurer!

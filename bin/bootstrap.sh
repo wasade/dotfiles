@@ -25,12 +25,15 @@ done
 if [ "$(uname)" == "Darwin" ]
 then
     curl -o miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+    curl -o mambaforge.sh https://github.com/conda-forge/miniforge/releases/download/latest/Mambaforge-latest-MacOSX-x86_64.sh
 else
-    curl -o miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    curl -o miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    curl -o mambaforge.sh https://github.com/conda-forge/miniforge/releases/download/latest/Mambaforge-latest-Linux-x86_64.sh
 fi
-
 chmod +x miniconda.sh
 ./miniconda.sh -b
+chmod +x mambaforge.sh
+./mambaforge.sh -b
 
 export PATH=${HOME}/miniconda3/bin:$PATH
 
